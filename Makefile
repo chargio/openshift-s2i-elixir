@@ -9,7 +9,8 @@ test:
 	docker build -t $(IMAGE_NAME)-candidate .
 	IMAGE_NAME=$(IMAGE_NAME)-candidate test/run
 
-.PHONY: build_test_example
-example:
+.PHONY: test_example
+test_example:
 	cd test
+	rm -rf test_app/
 	yes | mix phx.new --no-ecto test_app
