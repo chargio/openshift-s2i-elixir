@@ -11,6 +11,8 @@
 #
 IMAGE_NAME=${IMAGE_NAME-phoenix-s2i-builder-candidate}
 
+test_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # Determining system utility executables (darwin compatibility check)
 READLINK_EXEC="readlink"
 MKTEMP_EXEC="mktemp"
@@ -28,7 +30,7 @@ cid_file=$($MKTEMP_EXEC -u --suffix=.cid)
 s2i_args="--pull-policy=never --loglevel=2"
 
 # Port the image exposes service to be tested
-test_port=8080
+test_port="$(docker inspect --format='{{range $key, $value := .Config.ExposedPorts }}{{$key}}{{end}}' ${IMAGE_NAME} | sed 's/\/.*//')"
 
 image_exists() {
   docker inspect $1 &>/dev/null
