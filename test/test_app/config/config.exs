@@ -6,11 +6,11 @@
 use Mix.Config
 
 # Configures the endpoint
-config :phx_test, PhxTestWeb.Endpoint,
+config :test_app, TestAppWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "61kDYn6sAjwc5TW0vqkrNiQpvVd5+PKw1HNmBVRnHt/Bg7jWLn4uJwB7/2quS8e5",
-  render_errors: [view: PhxTestWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: PhxTest.PubSub,
+  secret_key_base: "VTRhIfDEAsx3/fMbisERLIpW5FUEjG/NnILFSkN0rSAImyAVgd4UIccBbLTEubAG",
+  render_errors: [view: TestAppWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: TestApp.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

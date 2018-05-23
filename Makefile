@@ -11,6 +11,5 @@ test:
 
 .PHONY: test_example
 test_example:
-	cd test
-	rm -rf test_app/
-	yes | mix phx.new --no-ecto test_app
+	rm -rf test/test_app/
+	cd test && yes | mix phx.new --no-ecto test_app

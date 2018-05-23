@@ -35,7 +35,7 @@ defmodule TestAppWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_test_app_key",
-    signing_salt: "WBC7Ztfz"
+    signing_salt: "Tn/Wsmoo"
 
   plug TestAppWeb.Router
 

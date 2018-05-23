@@ -1,4 +1,4 @@
-# PhxTest
+# TestApp
 
 To start your Phoenix server:
 
