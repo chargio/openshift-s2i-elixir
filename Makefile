@@ -12,4 +12,4 @@ test:
 .PHONY: build_test_example
 example:
 	cd test
-	yes | mix phx.new --no-ecto phx_test
+	yes | mix phx.new --no-ecto test_app
