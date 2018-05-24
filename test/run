@@ -11,6 +11,8 @@
 #
 IMAGE_NAME=${IMAGE_NAME-phoenix-s2i-builder-candidate}
 
+test_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/test"
+
 # Determining system utility executables (darwin compatibility check)
 READLINK_EXEC="readlink"
 MKTEMP_EXEC="mktemp"
@@ -22,6 +24,9 @@ fi
 test_dir="$($READLINK_EXEC -zf $(dirname "${BASH_SOURCE[0]}"))/test"
 image_dir=$($READLINK_EXEC -zf ${test_dir}/..)
 cid_file=$($MKTEMP_EXEC -u --suffix=.cid)
+
+echo "Test dir in:"
+echo $test_dir
 
 # Since we built the candidate image locally, we don't want S2I to attempt to pull
 # it from Docker hub
