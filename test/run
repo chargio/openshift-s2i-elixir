@@ -11,8 +11,6 @@
 #
 IMAGE_NAME=${IMAGE_NAME-phoenix-s2i-builder-candidate}
 
-test_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/test"
-
 # Determining system utility executables (darwin compatibility check)
 READLINK_EXEC="readlink"
 MKTEMP_EXEC="mktemp"
@@ -21,7 +19,7 @@ if [[ "$OSTYPE" =~ 'darwin' ]]; then
   ! type -a "gmktemp" &>"/dev/null" || MKTEMP_EXEC="gmktemp"
 fi
 
-test_dir="$($READLINK_EXEC -zf $(dirname "${BASH_SOURCE[0]}"))"
+test_dir="$($READLINK_EXEC -zf $(dirname "${BASH_SOURCE[0]}"))/test"
 image_dir=$($READLINK_EXEC -zf ${test_dir}/..)
 cid_file=$($MKTEMP_EXEC -u --suffix=.cid)
 
