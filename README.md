@@ -12,7 +12,7 @@
 | s2i/bin/run            | Yes       | Script that runs the application                             |
 | s2i/bin/save-artifacts | No        | Script for incremental builds that saves the built artifacts |
 | test/run               | No        | Test script for the builder image                            |
-| test/test-app          | Yes       | Test application source code                                 |
+| test/test_app          | Yes       | Test application source code                                 |
 
 #### Dockerfile
 Create a *Dockerfile* that installs all of the necessary tools and libraries that are needed to build and run our application.  This file will also handle copying the s2i scripts into the created image.
@@ -60,10 +60,10 @@ The builder image can also be tested by using the *make test* command since a *M
 The application image combines the builder image with your applications source code, which is served using whatever application is installed via the *Dockerfile*, compiled using the *assemble* script, and run using the *run* script.
 The following command will create the application image:
 ```
-s2i build test/test-app phoenix-s2i-builder phoenix-s2i-builder-app
+s2i build test/test_app phoenix-s2i-builder phoenix-s2i-builder-app
 ---> Building and installing application from source...
 ```
-Using the logic defined in the *assemble* script, s2i will now create an application image using the builder image as a base and including the source code from the test/test-app directory. 
+Using the logic defined in the *assemble* script, s2i will now create an application image using the builder image as a base and including the source code from the test/test_app directory. 
 
 #### Running the application image
 Running the application image is as simple as invoking the docker run command:
@@ -75,7 +75,7 @@ The application, which consists of a simple static web page, should now be acces
 #### Using the saved artifacts script
 Rebuilding the application using the saved artifacts can be accomplished using the following command:
 ```
-s2i build --incremental=true test/test-app nginx-centos7 nginx-app
+s2i build --incremental=true test/test_app nginx-centos7 nginx-app
 ---> Restoring build artifacts...
 ---> Building and installing application from source...
 ```

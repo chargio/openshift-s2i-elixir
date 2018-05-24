@@ -19,7 +19,7 @@ if [[ "$OSTYPE" =~ 'darwin' ]]; then
   ! type -a "gmktemp" &>"/dev/null" || MKTEMP_EXEC="gmktemp"
 fi
 
-test_dir="$($READLINK_EXEC -zf $(dirname "${BASH_SOURCE[0]}"))/test"
+test_dir="$($READLINK_EXEC -zf $(dirname "${BASH_SOURCE[0]}"))"
 image_dir=$($READLINK_EXEC -zf ${test_dir}/../..)
 cid_file=$($MKTEMP_EXEC -u --suffix=.cid)
 
@@ -64,7 +64,7 @@ prepare() {
     exit 1
   fi
   # s2i build requires the application is a valid 'Git' repository
-  pushd ${test_dir}/test-app >/dev/null
+  pushd ${test_dir}/test_app >/dev/null
   git init
   git config user.email "build@localhost" && git config user.name "builder"
   git add -A && git commit -m "Sample commit"
