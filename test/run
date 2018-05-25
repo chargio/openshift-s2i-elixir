@@ -41,6 +41,8 @@ container_exists() {
 container_ip() {
   if [ ! -z "$DOCKER_HOST" ] && [[ "$OSTYPE" =~ 'darwin' ]]; then
     docker-machine ip
+  elif [ -z "$DOCKER_HOST" ] && [[ "$OSTYPE" =~ 'darwin' ]]; then
+    echo "localhost"
   else
     docker inspect --format="{{ .NetworkSettings.IPAddress }}" $(cat $cid_file)
   fi
@@ -48,6 +50,8 @@ container_ip() {
 
 container_port() {
   if [ ! -z "$DOCKER_HOST" ] && [[ "$OSTYPE" =~ 'darwin' ]]; then
+    docker inspect --format="{{(index .NetworkSettings.Ports \"$test_port/tcp\" 0).HostPort}}" "$(cat "${cid_file}")"
+  elif [ -z "$DOCKER_HOST" ] && [[ "$OSTYPE" =~ 'darwin' ]]; then
     docker inspect --format="{{(index .NetworkSettings.Ports \"$test_port/tcp\" 0).HostPort}}" "$(cat "${cid_file}")"
   else
     echo $test_port
@@ -120,6 +124,7 @@ test_connection() {
   local sleep_time=1
   local attempt=1
   local result=1
+  echo "--------------------"
   while [ $attempt -le $max_attempts ]; do
     echo "Sending GET request to http://$(container_ip):$(container_port)/"
     response_code=$(curl -s -w %{http_code} -o /dev/null http://$(container_ip):$(container_port)/)

@@ -11,5 +11,13 @@ test:
 
 .PHONY: test_example
 test_example:
-	rm -rf test/test_app/
-	cd test && yes | mix phx.new --no-ecto test_app
+	echo "Deleting test directory"
+	# rm -rf test/test_app/
+	echo "Generating new example without Database"
+	# cd test && yes | mix phx.new --no-ecto test_app
+	echo "Starting in this directory:"
+	pwd 
+	echo "Making sure that the secret file is not ignored"
+	sed -ie '/secret\.exs/s/^/#/g'  test/test_app/.gitignore 
+	echo "Opening the ports in production for the container $PORT"
+	sed -ie '/host: "example.com", port: 80/ip: {0, 0, 0,0}, port: 4000/g' test/test_app/config/prod.exs

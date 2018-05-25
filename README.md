@@ -20,10 +20,10 @@ Create a *Dockerfile* that installs all of the necessary tools and libraries tha
 #### S2I scripts
 
 ##### assemble
-Create an *assemble* script that will build our application, e.g.:
-- build python modules
-- bundle install ruby gems
-- setup application specific configuration
+The *assemble* script will build the application:
+- Compile the code
+- Install node libraries needed for JS
+- setup application configuration
 
 The script can also specify a way to restore any saved artifacts from the previous image.   
 

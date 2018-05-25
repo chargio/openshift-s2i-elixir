@@ -8,5 +8,6 @@
 #
 
 export LANG=en_US.utf8
-mix ecto.migrate
+if [ `mix help | grep "ecto.migrate"` ];then mix ecto.migrate; fi;
+echo "Running Phoenix server in PORT ${PORT} and ENV ${MIX_ENV} "
 exec mix phx.server

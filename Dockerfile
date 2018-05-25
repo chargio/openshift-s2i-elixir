@@ -9,11 +9,13 @@ ARG ERLANG_VERSION=20.3
 ARG ELIXIR_VERSION=1.6.5
 ARG NODE_VERSION=8
 ARG ENVIRONMENT=prod
+ARG PORT=4000
 
 ENV ERLANG_VERSION ${ERLANG_VERSION}
 ENV ELIXIR_VERSION ${ELIXIR_VERSION}
 ENV NODE_VERSION ${NODE_VERSION}
 ENV MIX_ENV  ${ENVIRONMENT}
+ENV PORT ${PORT}
 
 LABEL io.k8s.description="Platform for building and running a phoenix app on Openshift" \
       io.k8s.display-name="s2i-phoenix-builder" \
@@ -76,7 +78,7 @@ RUN chown -R 1001:1001 /opt/app-root
 USER 1001
 
 # Set the default port for applications built using this image
-EXPOSE 4000
+EXPOSE ${PORT}
 
 # Set the default CMD for the image
 CMD ["/usr/libexec/s2i/usage"]
