@@ -8,7 +8,7 @@ use Mix.Config
 # Configures the endpoint
 config :test_app, TestAppWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "EFds29b8ctd7CVK5GRo/6s+R2B8Jxq1nBlsENPgLj+Xzpujx2rwzC+n9wuAV0R03",
+  secret_key_base: "XKvGaGE3BXbRzqLB7e0PtH2bZ102pIVhuyB9Qs9HSImcUFroHKu2cl52amCsIOaY",
   render_errors: [view: TestAppWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: TestApp.PubSub,
            adapter: Phoenix.PubSub.PG2]

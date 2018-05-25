@@ -9,4 +9,4 @@ use Mix.Config
 # kept out of version control and might be hard to recover
 # or recreate for your teammates (or yourself later on).
 config :test_app, TestAppWeb.Endpoint,
-  secret_key_base: "fpEe8kLNvaXZmv7FTv7E1EZI5FwX8CX8U6reyzZIDzy//dj6UBiYUjflcDY7XvJv"
+  secret_key_base: "Q/p0xFwEOII7bBEVdu10SAt/LTVGf8pU2/Uzvmhf95ue9QeOB8HJQGV2Grzktihc"
